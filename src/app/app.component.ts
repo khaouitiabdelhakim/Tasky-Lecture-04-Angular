@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   getTasks() {
-    this.http.get<Task[]>('http://localhost:8081/api/tasks').subscribe(
+    this.http.get<Task[]>('http://localhost:8081/api/tasks/all').subscribe(
       (response: Task[]) => {
         this.tasks = response;
         console.log('Tasks:', this.tasks);
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
         completed: false
       };
 
-      this.http.post<Task>('http://localhost:8081/api/tasks', newTask).subscribe(task => {
+      this.http.post<Task>('http://localhost:8081/api/tasks/new', newTask).subscribe(task => {
         this.tasks.push(task);
         this.newTaskText = '';
       });
@@ -52,12 +52,12 @@ export class AppComponent implements OnInit {
 
   updateTask(task: Task) {
     task.completed = !task.completed;
-    this.http.put<Task>(`http://localhost:8081/api/tasks/${task.id}`, task).subscribe();
+    this.http.put<Task>(`http://localhost:8081/api/tasks/update/${task.id}`, task).subscribe();
   }
 
   deleteTask(id: number) {
     if (confirm('Are you sure you want to delete this task?')) {
-      this.http.delete(`http://localhost:8081/api/tasks/${id}`).subscribe(() => {
+      this.http.delete(`http://localhost:8081/api/tasks/delete/${id}`).subscribe(() => {
         this.tasks = this.tasks.filter(task => task.id !== id);
       });
     }
