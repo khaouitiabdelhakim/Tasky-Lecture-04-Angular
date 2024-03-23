@@ -1,29 +1,60 @@
 <div class="container mt-5">
   <h1>Tasky</h1>
-  <hr>
-  <div class="row">
-    <div class="col-md-6">
+  <hr />
+  <div class="row d-flex flex-column align-items-center">
+    <div class="col-md-6 mb-3">
       <form #taskForm="ngForm" (submit)="addTask()">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter task" name="taskText" [(ngModel)]="newTaskText" required>
+        <div class="form-group mb-3">
+          <textarea
+            class="form-control"
+            placeholder="Enter task"
+            name="taskText"
+            [(ngModel)]="newTaskText"
+            required
+          ></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Add Task</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!taskForm.valid"
+        >
+          Add Task
+        </button>
       </form>
+      <hr />
     </div>
-  </div>
-  <hr>
-  <div class="row">
     <div class="col-md-6">
-      <h3>Tasks</h3>
-      <ul class="list-group">
-        <li *ngFor="let task of tasks" class="list-group-item">
-          <div>
-            <input type="checkbox" [checked]="task.completed" (change)="updateTask(task)">
-            <span [ngClass]="{'completed': task.completed}">{{ task.text }}</span>
-            <button class="btn btn-danger btn-sm float-right ml-2" (click)="deleteTask(task.id)">Delete</button>
-          </div>
-        </li>
-      </ul>
+      <h3>My Tasks</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>
+              <input
+                type="checkbox"
+                [checked]="task.completed"
+                (change)="updateTask(task)"
+              />
+              <span [ngClass]="{ completed: task.completed }">{{
+                task.text
+              }}</span>
+            </td>
+            <td class="w-25">
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="deleteTask(task.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
