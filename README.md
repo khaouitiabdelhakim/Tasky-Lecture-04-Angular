@@ -15,7 +15,7 @@ If you'd like to support further, consider buying us a coffee:
 ![labAngular](https://github.com/khaouitiabdelhakim/Tasky-Lecture-04-Angular/blob/master/Ramadan%20labs%20Lectures%20-%2005.png)
 
 ## Authors
-IDRISSI Ahmed - KHAOUITI Abdelhakim
+[IDRISSI Ahmed](https://github.com/ahmedidrissi) - [KHAOUITI Abdelhakim](https://github.com/khaouitiabdelhakim)
 
 ## About Us
 
